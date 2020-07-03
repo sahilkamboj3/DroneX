@@ -1,0 +1,113 @@
+{% load static %}
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
+    <title>Thank You Email</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Arvo&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap"); */
+
+      body {
+        width: 100%;
+        color: black;
+        border-radius: 10px;
+        min-height: 50vh;
+        /* font-family: "Roboto Mono", monospace; */
+        font-family: "Arvo", serif;
+      }
+
+      .wrapper {
+        text-align: center;
+        width: 75%;
+        margin: auto;
+        padding: 20px;
+      }
+
+      .thanks {
+        text-align: center;
+        background-color: #ffdbdb;
+        padding: 20px 15%;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border-bottom-width: 0px;
+      }
+
+      .title {
+        font-size: 40px;
+        color: black;
+      }
+
+      .thank-you-text {
+        font-size: 20px;
+        color: black;
+      }
+
+      .note {
+        font-size: 15px;
+        color: black;
+      }
+
+      .order {
+        padding-top: 15px;
+        padding-bottom: 15px;
+        background-color: #ff7777;
+        border-bottom-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+      }
+
+      .order-text,
+      .order-dynamic {
+        font-size: 18px;
+        color: white;
+      }
+
+      .end-message {
+        font-size: 15px;
+        color: white;
+      }
+
+      .image {
+        border-radius: 10px;
+        width: 150px;
+      }
+
+      .copyright {
+        color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="thanks">
+        <!-- Figure out how to add an image here relatively. -->
+        <img src="{% static 'logo.jpg' %}" alt="Logo" />
+        <h1 class="title">Hey {{ name }}!</h1>
+        <h4 class="thank-you-text">
+          We got your order!
+        </h4>
+        <h5 class="note">
+          You probably won't get your product since this isn't a real company
+          but thank you for checking us out today!
+        </h5>
+        <img
+          class="image"
+          src="https://cdn.dribbble.com/users/1363206/screenshots/4419515/image.png"
+          alt="Big Hero 6"
+        />
+      </div>
+      <div class="order">
+        <h3 class="order-text">You Ordered:</h3>
+        <h3 class="order-dynamic">{{ count }} Drones for ${{ final_cost }}!</h3>
+      </div>
+      <footer class="footer">
+        <p class="copyright">&copy; DroneX 2020</p>
+      </footer>
+    </div>
+  </body>
+</html>

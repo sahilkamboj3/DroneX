@@ -1,0 +1,6 @@
+{
+    "python.pythonPath": "/Users/sahilkamboj/.local/share/virtualenvs/backend-xw-FpwkG/bin/python",
+    "python.linting.flake8Enabled": false,
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true
+}
