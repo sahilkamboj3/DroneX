@@ -1,0 +1,229 @@
+@import "./mixins/base.module.scss";
+@import "./variables/variables";
+
+.wrapper {
+  @include wrapper();
+  margin-top: 20px;
+  background-color: black;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  min-height: 50px;
+
+  .rpModalBg {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    // display: none;
+    z-index: 0;
+    visibility: hidden;
+    opacity: 0;
+
+    transition: visibility 0s, opacity 0.33s ease-in-out;
+
+    .modal {
+      background-color: white;
+      width: 70%;
+      height: 70%;
+      display: flex;
+      flex-direction: column;
+      // justify-content: space-evenly;
+      justify-content: space-around;
+      align-items: center;
+
+      .text {
+        overflow-y: scroll;
+        width: 95%;
+        height: 75%;
+        // border: 2px black solid;
+      }
+
+      .button {
+        @include button(black, white);
+        margin-bottom: 15px;
+        margin-top: 15px;
+        // margin-top: 5px;
+        // align-self: center;
+      }
+    }
+  }
+
+  .tcModalBg {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    // justify-content: center;
+    justify-content: space-around;
+    align-items: center;
+
+    // display: none;
+    z-index: 0;
+    visibility: hidden;
+    opacity: 0;
+
+    transition: visibility 0s, opacity 0.33s ease-in-out;
+
+    .modal {
+      background-color: white;
+      width: 70%;
+      height: 70%;
+      display: flex;
+      flex-direction: column;
+      // justify-content: space-evenly;
+      justify-content: space-around;
+      align-items: center;
+
+      .text {
+        overflow-y: scroll;
+        width: 95%;
+        height: 75%;
+        // border: 2px black solid;
+      }
+
+      .button {
+        @include button(black, white);
+        margin-bottom: 15px;
+        margin-top: 15px;
+        // margin-top: 5px;
+        // align-self: center;
+      }
+    }
+  }
+
+  .ppModalBg {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    // display: none;
+    z-index: 0;
+    visibility: hidden;
+    opacity: 0;
+
+    transition: visibility 0s, opacity 0.33s ease-in-out;
+
+    .modal {
+      background-color: white;
+      width: 70%;
+      height: 70%;
+      display: flex;
+      flex-direction: column;
+      // justify-content: space-evenly;
+      justify-content: space-around;
+      align-items: center;
+
+      .text {
+        overflow-y: scroll;
+        width: 95%;
+        height: 75%;
+        // border: 2px black solid;
+      }
+
+      .button {
+        @include button(black, white);
+        margin-bottom: 15px;
+        margin-top: 15px;
+        // margin-top: 5px;
+        // align-self: center;
+      }
+    }
+  }
+
+  .modalBgActive {
+    z-index: 10;
+    // display: block;
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .button_div {
+    display: flex;
+    justify-content: space-evenly;
+
+    .button {
+      @include button(black, #dfdfdf);
+      align-self: center;
+      width: 200px;
+      transition: color 100ms ease-in;
+
+      &:hover {
+        background-color: black;
+        color: white;
+        font-size: $p;
+        border: 2px black solid;
+      }
+    }
+    .sign_out {
+      display: none;
+    }
+  }
+
+  .copyright {
+    margin-top: 30px;
+    text-align: center;
+    color: white;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .wrapper {
+    .rpModalBg,
+    .tcModalBg,
+    .ppModalBg {
+      .modal {
+        width: 95%;
+        height: 80%;
+        .text {
+          margin-top: -5px;
+        }
+        .button {
+          margin-top: 15px;
+          margin-bottom: 15px;
+        }
+      }
+
+      .modal::-webkit-scrollbar {
+        display: none;
+      }
+    }
+    .button_div {
+      display: flex;
+      flex-direction: column;
+
+      .sign_out {
+        display: inline;
+
+        @include button(black, #dfdfdf);
+        align-self: center;
+        width: 200px;
+        transition: color 100ms ease-in;
+
+        &:hover {
+          background-color: black;
+          color: white;
+          font-size: $p;
+          border: 2px black solid;
+        }
+      }
+    }
+  }
+}

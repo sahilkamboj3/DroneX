@@ -1,0 +1,97 @@
+@import "./mixins/base.module.scss";
+@import "./variables/variables";
+
+.wrapper {
+  @include wrapper();
+  display: flex;
+  flex-direction: row;
+
+  .content {
+    width: 35vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+
+    .text {
+      width: 65%;
+      align-self: center;
+    }
+
+    .logo {
+      @include image();
+      align-self: center;
+    }
+
+    .social_icons {
+      .image {
+        @include image();
+        width: $image-width * 0.35;
+        cursor: pointer;
+        margin-left: 10px;
+        margin-right: 10px;
+
+        &:hover {
+          transform: scale(1.05);
+        }
+      }
+    }
+    .button_back {
+      @include button(black, white);
+      margin-top: 5px;
+      align-self: center;
+    }
+  }
+
+  .side_image {
+    width: 65vw;
+    background-color: $grey;
+    display: flex;
+    justify-content: center;
+
+    .image {
+      align-self: center;
+      width: 75%;
+      height: auto;
+    }
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .wrapper {
+    flex-direction: column-reverse;
+    justify-content: space-evenly;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    .side_image {
+      width: 100%;
+      background-color: $grey;
+
+      .image {
+        width: 70%;
+      }
+    }
+
+    .content {
+      width: 100%;
+      font-size: $p;
+
+      .social_icons {
+        .image {
+          width: $image-width * 0.3;
+        }
+      }
+
+      .logo {
+        width: $image-width * 0.8;
+      }
+
+      .button_pay {
+        margin-bottom: 10px;
+        font-size: $p * 0.85;
+        width: $input-buttton-width * 0.85;
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "name": "drone-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@zeit/next-sass": "^1.0.1",
+    "bad-words": "^3.0.3",
+    "classnames": "^2.2.6",
+    "js-cookie": "^2.2.1",
+    "next": "9.4.4",
+    "next-redux-wrapper": "^6.0.2",
+    "node-sass": "^4.14.1",
+    "react": "16.13.1",
+    "react-country-region-selector": "^2.1.0",
+    "react-dom": "16.13.1",
+    "react-redux": "^7.2.0",
+    "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-persist": "^6.0.0",
+    "redux-thunk": "^2.3.0"
+  }
+}

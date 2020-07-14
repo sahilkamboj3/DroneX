@@ -1,0 +1,103 @@
+@import "./mixins/base.module.scss";
+@import "./variables/variables";
+
+.wrapper {
+  @include wrapper();
+  display: flex;
+  flex-direction: row;
+
+  .content {
+    width: 35vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+
+    .logo {
+      @include image();
+      align-self: center;
+    }
+
+    .input {
+      @include input(black);
+      margin-top: 5px;
+      margin-bottom: 5px;
+      align-self: center;
+    }
+
+    .button_back {
+      @include button(white, black);
+      border: 2px black solid;
+      margin-top: 5px;
+      align-self: center;
+    }
+
+    .button_pay {
+      @include button(black, white);
+      margin-top: 5px;
+      align-self: center;
+    }
+
+    .errors {
+      align-self: center;
+      width: 65%;
+      color: red;
+    }
+  }
+
+  .side_image {
+    width: 65vw;
+    background-color: $grey;
+    display: flex;
+    justify-content: center;
+
+    .image {
+      align-self: center;
+      width: 75%;
+      height: auto;
+    }
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .wrapper {
+    flex-direction: column-reverse;
+    justify-content: space-evenly;
+
+    .side_image {
+      display: none;
+    }
+
+    .content {
+      width: 100%;
+      font-size: $p;
+      margin-top: 25px;
+      margin-bottom: 50px;
+
+      .errors {
+        width: 85%;
+      }
+
+      .logo {
+        width: $image-width * 0.8;
+      }
+
+      .input {
+        margin-bottom: 0px;
+        margin-top: 10px;
+        width: $input-buttton-width * 0.85;
+      }
+
+      .button_back {
+        margin-top: 15px;
+      }
+
+      .button_back,
+      .button_pay {
+        margin-bottom: 10px;
+        font-size: $p * 0.85;
+        width: $input-buttton-width * 0.85;
+      }
+    }
+  }
+}

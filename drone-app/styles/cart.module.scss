@@ -1,0 +1,144 @@
+@import "./mixins/base.module.scss";
+@import "./variables/variables";
+
+.wrapper {
+  @include wrapper();
+  display: flex;
+  flex-direction: row;
+
+  .content {
+    width: 35vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+
+    .logo {
+      @include image();
+      align-self: center;
+    }
+
+    .count_div {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: center;
+
+      .count {
+        font-size: $h1;
+        margin-left: 10px;
+        margin-right: 10px;
+        border: 1px black solid;
+        padding: 10px 20px;
+      }
+
+      .button {
+        @include button(white, black);
+        border: 2px white solid;
+        align-self: center;
+        width: 25px;
+        padding: 2px 2px;
+        margin-left: 5px;
+        margin-right: 5px;
+
+        &:hover {
+          background-color: black;
+          color: white;
+          border: 2px black solid;
+        }
+      }
+    }
+
+    .discount_div {
+      .input {
+        @include input(black);
+        margin-top: 5px;
+        margin-bottom: 5px;
+        align-self: center;
+      }
+
+      .button {
+        @include button(black, white);
+        margin-top: 5px;
+        margin-left: 10px;
+        width: 125px;
+        align-self: center;
+      }
+    }
+
+    .button_back {
+      @include button(white, black);
+      border: 2px black solid;
+      margin-top: 5px;
+      align-self: center;
+    }
+
+    .button_checkout {
+      @include button(black, white);
+      margin-top: 5px;
+      align-self: center;
+    }
+
+    .errors {
+      color: red;
+    }
+  }
+
+  .side_image {
+    width: 65vw;
+    background-color: $grey;
+    display: flex;
+    justify-content: center;
+
+    .image {
+      align-self: center;
+      width: 75%;
+      height: auto;
+    }
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .wrapper {
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    .side_image {
+      display: none;
+    }
+
+    .content {
+      width: 100%;
+      font-size: $p;
+      margin-top: 25px;
+      margin-bottom: 50px;
+
+      .logo {
+        width: $image-width * 0.8;
+      }
+
+      .discount_div {
+        display: flex;
+        flex-direction: column;
+
+        .button {
+          margin-bottom: 5px;
+          font-size: $p * 0.85;
+          width: $input-buttton-width * 0.65;
+        }
+      }
+
+      .input {
+        margin-bottom: 0px;
+        margin-top: 30px;
+        width: $input-buttton-width * 0.85;
+      }
+
+      .button_checkout,
+      .button_back {
+        margin-bottom: 5px;
+        font-size: $p * 0.85;
+        width: $input-buttton-width * 0.85;
+      }
+    }
+  }
+}

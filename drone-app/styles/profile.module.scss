@@ -1,0 +1,201 @@
+@import "./mixins/base.module.scss";
+@import "./variables/variables";
+
+.wrapper {
+  @include wrapper();
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .profile {
+    display: flex;
+    justify-content: space-evenly;
+
+    .information {
+      padding-top: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      min-height: 70vh;
+      width: 25vw;
+      text-align: center;
+      background-color: $grey;
+
+      .profile_image_div {
+        .profile_image {
+          align-self: center;
+          border-radius: 50%;
+          width: 50%;
+          border: 1px black solid;
+          object-fit: cover;
+        }
+      }
+
+      .h1 {
+        font-size: $h1;
+        width: 95%;
+        align-self: center;
+
+        .username {
+          font-size: $h1 * 0.75;
+        }
+      }
+
+      .button1 {
+        @include button(black, white);
+        margin-top: 5px;
+        margin-bottom: 5px;
+        align-self: center;
+      }
+    }
+
+    .orders {
+      display: flex;
+      flex-direction: column;
+      width: 35vw;
+      text-align: center;
+
+      .order {
+        transition: 0.5s;
+        margin-top: 5px;
+        text-align: start;
+        background-color: $grey;
+        padding-top: 10px;
+        padding-bottom: 10px;
+
+        .text {
+          width: 50%;
+          margin: auto;
+          .arriving {
+            font-size: $h3;
+            color: green;
+          }
+        }
+      }
+
+      .order:hover {
+        z-index: 5;
+        transform: scale(1.05);
+        background-color: #e9e9e9;
+      }
+
+      .button_div {
+        .button1 {
+          @include button(black, white);
+          margin-top: 20px;
+          margin-bottom: 5px;
+          align-self: center;
+          width: 120px;
+          margin-right: 2.5px;
+          margin-left: 2.5px;
+        }
+
+        .button2 {
+          @include button(black, white);
+          margin-top: 20px;
+          margin-bottom: 5px;
+          align-self: center;
+          width: 120px;
+          margin-right: 2.5px;
+          margin-left: 2.5px;
+        }
+      }
+    }
+
+    .reviews {
+      display: flex;
+      flex-direction: column;
+      width: 35vw;
+      text-align: center;
+
+      .review {
+        transition: 0.5s;
+        display: flex;
+        flex-direction: column;
+        margin-top: 5px;
+        text-align: start;
+        background-color: $grey;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        max-height: 400px;
+        overflow-y: scroll;
+
+        .text {
+          width: 65%;
+          margin: auto;
+        }
+
+        .image {
+          align-self: center;
+          width: 100%;
+        }
+
+        .video {
+          border: black;
+          width: $image-width;
+        }
+      }
+
+      .review:hover {
+        z-index: 5;
+        transform: scale(1.05);
+        background-color: #e9e9e9;
+      }
+
+      .button_div {
+        .button1 {
+          @include button(black, white);
+          margin-top: 20px;
+          margin-bottom: 5px;
+          align-self: center;
+          width: 120px;
+          margin-right: 2.5px;
+          margin-left: 2.5px;
+        }
+
+        .button2 {
+          @include button(black, white);
+          margin-top: 20px;
+          margin-bottom: 5px;
+          align-self: center;
+          width: 120px;
+          margin-right: 2.5px;
+          margin-left: 2.5px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .wrapper {
+    .profile {
+      flex-direction: column;
+      align-items: center;
+
+      .information,
+      .orders,
+      .reviews {
+        width: 93.5%;
+      }
+
+      .information {
+        order: 1;
+        min-height: 1vh;
+
+        .profile_image_div {
+          .profile_image {
+            width: 25%;
+          }
+        }
+      }
+
+      .orders {
+        order: 3;
+      }
+      .reviews {
+        order: 2;
+      }
+    }
+  }
+}

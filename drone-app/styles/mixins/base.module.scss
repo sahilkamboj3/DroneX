@@ -1,0 +1,97 @@
+@import "../variables/_variables.scss";
+
+@mixin wrapper {
+  overflow-x: hidden;
+  font-family: $font-family;
+  letter-spacing: 0.01em;
+  min-height: 100vh;
+  margin: -10px;
+}
+
+@mixin div($flex-direction) {
+  display: flex;
+  flex-direction: $flex-direction;
+}
+
+@mixin button($background-color, $text-color) {
+  background-color: $background-color;
+  color: $text-color;
+  padding: 7.5px 15px;
+  border: 2px $background-color solid;
+  cursor: pointer;
+  outline: none;
+  font-size: $p;
+  font-family: $font-family;
+  letter-spacing: 0.01em;
+  width: $input-buttton-width;
+  position: relative;
+  z-index: 1;
+  transition: font-size 100ms ease-in;
+
+  &:hover {
+    font-size: $p * 1.05;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    bottom: -2px;
+    left: -2px;
+    right: -2px;
+    border: 2px solid $background-color;
+    color: $text-color;
+
+    @if $background-color == white {
+      border: 2px solid $text-color;
+      transform-origin: left;
+    }
+
+    z-index: -1;
+    transition: top, left, right, bottom, 100ms ease-in-out;
+  }
+
+  &:hover::before,
+  &:focus::before {
+    transform: scaleX(1);
+    top: -6px;
+    bottom: -6px;
+    left: -6px;
+    right: -6px;
+  }
+}
+
+@mixin input($border-color) {
+  font-size: $p;
+  color: black;
+  padding: 10px 10px;
+  border-radius: $border-radius;
+  border: $border-color $border-width solid;
+  outline: none;
+  font-family: $font-family;
+  letter-spacing: 0.01em;
+  width: $input-buttton-width;
+
+  &:focus {
+    transition: transform, font-size, ease-in 0.05s;
+    font-size: $p * 1.05;
+    transform: scale(1.05);
+  }
+}
+
+@mixin image {
+  width: $image-width;
+  border-radius: 10px;
+}
+
+@mixin helper_text($text-color) {
+  font-size: $helper-text;
+  color: $text-color;
+  text-decoration: none;
+}
+
+@mixin form {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}

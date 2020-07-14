@@ -1,0 +1,103 @@
+@import "./mixins/base.module.scss";
+@import "./variables/variables";
+
+.wrapper {
+  @include wrapper();
+  display: flex;
+  flex-direction: row-reverse;
+
+  .div1 {
+    background-color: $grey;
+    display: flex;
+    justify-content: center;
+    width: 65vw;
+
+    .image {
+      width: 50%;
+    }
+  }
+
+  .div2 {
+    width: 35vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+
+    .image {
+      @include image();
+      align-self: center;
+    }
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      align-self: center;
+
+      .input {
+        @include input(black);
+        margin-top: 5px;
+        margin-bottom: 5px;
+      }
+
+      .password_visibility {
+        display: flex;
+        justify-content: center;
+        .password_image {
+          @include image();
+          margin-left: 5px;
+          align-self: center;
+          width: $image-width * 0.35;
+          cursor: pointer;
+        }
+      }
+
+      .button {
+        @include button(black, white);
+        margin-top: 5px;
+        align-self: center;
+      }
+    }
+
+    .help_text {
+      color: darkblue;
+      text-decoration: none;
+    }
+
+    .errors {
+      color: red;
+    }
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .wrapper {
+    flex-direction: column-reverse;
+    justify-content: space-evenly;
+
+    .div1 {
+      display: none;
+    }
+
+    .div2 {
+      width: 100%;
+      font-size: $p;
+
+      .input {
+        margin-bottom: 0px;
+        margin-top: 10px;
+        width: $input-buttton-width * 0.85;
+      }
+
+      .logo {
+        width: $image-width * 0.8;
+      }
+
+      .button {
+        margin-top: 25px;
+        font-size: $p * 0.85;
+        width: $input-buttton-width * 0.85;
+      }
+    }
+  }
+}
