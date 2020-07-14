@@ -1,18 +1,3 @@
-"""drone URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/2.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
 from django.urls import path
 from account.views import (
@@ -33,7 +18,8 @@ from account.views import (
     change_name_view,
     change_username_view,
     change_profileimage_view,
-    stats_view,
+    share_and_create_discount,
+    delete_discount_view,
 )
 
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
@@ -55,6 +41,9 @@ urlpatterns = [
     path('api/pay/', pay_view, name='api_pay'),
     path('api/pay/email/', pay_email_view, name='api_pay_email'),
     path('api/discount/', discount_view, name='api_discount'),
+    path('api/delete/discount/', delete_discount_view, name='api_delete_discount'),
+    path('api/share/creatediscount/', share_and_create_discount,
+         name='api_share_create_discount'),
     path('api/post/review/', post_review_view, name='api_post_review'),
     path('api/get/review/', get_review_view, name='api_get_review'),
     path('api/delete/profile/', delete_profile_view, name='api_delete_profile'),
@@ -64,7 +53,6 @@ urlpatterns = [
     path('api/changeusername/', change_username_view, name='api_change_username'),
     path('api/changeprofileimage/', change_profileimage_view,
          name='api_change_profileimage'),
-    path('api/stats/', stats_view, name='api_stats'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

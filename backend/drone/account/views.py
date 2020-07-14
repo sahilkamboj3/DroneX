@@ -5,7 +5,8 @@ import random
 from django.template.loader import render_to_string
 from django.shortcuts import render
 from django.core.mail import send_mail
-from django.http import HttpResponse, Http404  # JsonResponse
+
+from django.http import HttpResponse, Http404
 from django.contrib.auth import authenticate, login, logout
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
@@ -14,7 +15,24 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from .serializers import AccountSerializer
 from .models import Account, AccountManager, Orders, DiscountCodes, Reviews
 
-# Use Response to make a Table API version of the API through the website. This handles request.data as well in the body of the request.
+
+def returnRandomString(string_length=7):
+    alpha_string = ""
+    letters = string.ascii_lowercase
+    for i in range(string_length):
+        prob = random.random()
+        if prob < 0.5:
+            alpha_string += str(random.choice(letters).upper())
+        else:
+            alpha_string += str(random.choice(letters))
+    return alpha_string
+
+
+def returnRandomNumbers(iterations=5):
+    numbers = ""
+    for i in range(iterations):
+        numbers += str(random.randint(0, 9))
+    return numbers
 
 
 @api_view(['GET'])
@@ -40,10 +58,6 @@ def get_user_view(request, *args, **kwargs):
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def login_view(request, *args, **kwargs):
-    # check why it is saying "CSRF Failed: CSRF token missing or incorrect." in POSTMAN -> fixed by adding
-    # DEFAULT_AUTHENTICATION_CLASSES = [
-    #     'rest_framework.authentication.TokenAuthentication'
-    # ]
 
     if request.user.is_authenticated:
         return Response({'message': 'User already logged in.'})
@@ -87,25 +101,42 @@ def signup_view(request, *args, **kwargs):
     username = request.data['username']
     email = request.data['email']
     password = request.data['password']
+
+    # if username and name and email and password:
     try:
-        if username and name and email and password:
-            user = Account.objects.create(
-                email=email,
-                name=name,
-                username=username
-            )
-            user.set_password(password)
-            user.save()
-            login(request, user)
+        user = Account.objects.create(
+            email=email,
+            name=name,
+            username=username
+        )
+        user.set_password(password)
+        user.save()
+        login(request, user)
 
-            data = {
-                'email': email,
-                'name': name,
-                'username': username,
-                'message': 'Account created.'
-            }
+        context = {
+            'name': user.name
+        }
 
-            return Response(data)
+        html_message = render_to_string(
+            'welcome.html', context=context)
+
+        send_mail(
+            'Welcome to DroneX',
+            'Test message.',
+            'dronex327@gmail.com',
+            [email],
+            html_message=html_message,
+            fail_silently=False,
+        )
+        data = {
+            'email': email,
+            'name': name,
+            'username': username,
+            'message': 'Account created.'
+        }
+
+        return Response(data)
+
     except:
         data = {
             'email': email,
@@ -222,8 +253,87 @@ def discount_view(request, *args, **kwargs):
         return Response({'message': 'code doesnt exist'})
 
 
-@api_view(['POST'])
+@api_view(['DELETE'])
 @permission_classes([IsAuthenticated])
+def delete_discount_view(request, *args, **kwargs):
+    discount = DiscountCodes.objects.get(string=request.data['string'])
+    discount.delete()
+    return Response({'message': 'discount deleted'})
+
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def share_and_create_discount(request, *args, **kwargs):
+    email = request.data['email']
+
+    try:
+        invited = Account.objects.get(email=email)
+        return Response({'message': 'invited user already exists'})
+    except:
+        try:
+            # find user
+            user = Account.objects.get(email=request.user)
+
+            # send mail to invited customer
+            num_digit_length = 3
+
+            first_string = ''
+            for i in range(num_digit_length):
+                first_string += returnRandomString(string_length=1) + \
+                    str(returnRandomNumbers(iterations=1))
+
+            new_code = DiscountCodes.objects.create(
+                string=first_string, percentOff=15)
+
+            context = {
+                'name': user.name,
+                'secure_code': new_code.string
+            }
+
+            html_message = render_to_string('invite.html', context=context)
+
+            send_mail(
+                f'{user.name} Invites You to DroneX',
+                'Test message.',
+                'dronex327@gmail.com',
+                [email],
+                html_message=html_message,
+                fail_silently=False,
+            )
+
+            second_string = ''
+            # create code
+            for i in range(num_digit_length):
+                second_string += returnRandomString(string_length=1) + \
+                    str(returnRandomNumbers(iterations=1))
+
+            new_code = DiscountCodes.objects.create(
+                string=second_string, percentOff=15)
+
+            # send mail to user for discount
+            context = {
+                'name': user.name,
+                'secure_code': new_code.string
+            }
+
+            html_message = render_to_string('give_code.html', context=context)
+
+            send_mail(
+                'DroneX - Discount Code',
+                'Test message.',
+                'dronex327@gmail.com',
+                [user.email],
+                html_message=html_message,
+                fail_silently=False,
+            )
+
+            return Response({'message': 'code created and email sent'})
+        except:
+            return Response({'message': "the email doesn't seem to exist"})
+
+
+@ api_view(['POST'])
+@ permission_classes([IsAuthenticated])
 def post_review_view(request, *args, **kwargs):
     rating = request.data['rating']
     review = request.data['review']
@@ -241,8 +351,8 @@ def post_review_view(request, *args, **kwargs):
     return Response({'message': 'review created'})
 
 
-@api_view(['GET'])
-@permission_classes([AllowAny])
+@ api_view(['GET'])
+@ permission_classes([AllowAny])
 def get_review_view(request, *args, **kwargs):
     reviews = Reviews.objects.all()
     context = {}
@@ -260,7 +370,6 @@ def get_review_view(request, *args, **kwargs):
             review_dict['name'] = 'Anonymous'
         else:
             review_dict['name'] = review.user.name
-            # review_dict['name'] = review.user.username
 
         if review.image:
             if review.image.url[-3:] == 'jpg' or review.image.url[-3:] == 'peg' or review.image.url[-3:] == 'png':
@@ -277,26 +386,9 @@ def get_review_view(request, *args, **kwargs):
     return Response(context)
 
 
-@api_view(['POST'])
-@permission_classes([AllowAny])
+@ api_view(['POST'])
+@ permission_classes([AllowAny])
 def forgot_password_view(request, *args, **kwargs):
-
-    def returnRandomString(string_length=7):
-        alpha_string = ""
-        letters = string.ascii_lowercase
-        for i in range(string_length):
-            prob = random.random()
-            if prob < 0.5:
-                alpha_string += str(random.choice(letters).upper())
-            else:
-                alpha_string += str(random.choice(letters))
-        return alpha_string
-
-    def returnRandomNumbers(iterations=5):
-        numbers = ""
-        for i in range(iterations):
-            numbers += str(random.randint(0, 9))
-        return numbers
     try:
         user = Account.objects.get(email=request.data['email'])
     except:
@@ -329,8 +421,8 @@ def forgot_password_view(request, *args, **kwargs):
     return Response(return_response)
 
 
-@api_view(['POST'])
-@permission_classes([AllowAny])
+@ api_view(['POST'])
+@ permission_classes([AllowAny])
 def change_password_view(request, *args, **kwargs):
     user = Account.objects.get(email=request.data['email'])
     new_password = request.data['newPassword']
@@ -340,8 +432,8 @@ def change_password_view(request, *args, **kwargs):
     return Response({'message': 'password changed'})
 
 
-@api_view(['POST'])
-@permission_classes([IsAuthenticated])
+@ api_view(['POST'])
+@ permission_classes([IsAuthenticated])
 def change_name_view(request, *args, **kwargs):
     user = Account.objects.get(email=request.user)
     new_name = request.data['name']
@@ -350,8 +442,8 @@ def change_name_view(request, *args, **kwargs):
     return Response({'message': 'name changed'})
 
 
-@api_view(['POST'])
-@permission_classes([IsAuthenticated])
+@ api_view(['POST'])
+@ permission_classes([IsAuthenticated])
 def change_username_view(request, *args, **kwargs):
     user = Account.objects.get(email=request.user)
     new_username = request.data['username']
@@ -360,8 +452,8 @@ def change_username_view(request, *args, **kwargs):
     return Response({'message': 'username changed'})
 
 
-@api_view(['POST'])
-@permission_classes([IsAuthenticated])
+@ api_view(['POST'])
+@ permission_classes([IsAuthenticated])
 def change_profileimage_view(request, *args, **kwargs):
     image = request.data['image']
 
@@ -371,11 +463,3 @@ def change_profileimage_view(request, *args, **kwargs):
     user.profile_image = image
     user.save()
     return Response({'message': 'profile image changed'})
-
-# statistics views
-
-
-@api_view(['GET'])
-@permission_classes([AllowAny])
-def stats_view(request, *args, **kwargs):
-    return Response({'message': 'stats'})

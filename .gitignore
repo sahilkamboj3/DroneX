@@ -1,0 +1,7 @@
+backend/drone/drone/.env
+backend/drone/db.sqlite3
+backend/.vscode
+backend/drone/media
+backend/drone/static
+
+frontend/drone-app/node_modules

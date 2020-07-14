@@ -62,6 +62,11 @@
         color: black;
       }
 
+      .order-dynamic {
+        width: 90%;
+        margin: auto;
+      }
+
       .end-message {
         font-size: 15px;
         color: white;
@@ -82,11 +87,11 @@
       <div class="thanks">
         <h1 class="title">Hey {{ name }}!</h1>
         <h4 class="thank-you-text">
-          We got your order!
+          Welcome to DroneX!
         </h4>
         <h5 class="note">
-          You probably won't get your product since this isn't a real company
-          but thank you for checking us out today! Fly safe! 😜
+          We are excited to invite to our little DroneX family. So many people
+          enjoy our drones and we hope you enjoy them just as much.
         </h5>
         <img
           class="image"
@@ -95,8 +100,14 @@
         />
       </div>
       <div class="order">
-        <h3 class="order-text">You Ordered:</h3>
-        <h3 class="order-dynamic">{{ count }} Drones for ${{ final_cost }}!</h3>
+        <h3 class="order-dynamic">
+          You can use the code <strong>10OFF</strong> at checkout to get 10% off
+          your order!
+        </h3>
+        <br />
+        <h3 class="order-dynamic">
+          We are very excited for the future!
+        </h3>
       </div>
       <footer class="footer">
         <p class="copyright">&copy; DroneX 2020</p>
