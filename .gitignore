@@ -4,4 +4,6 @@ backend/.vscode
 backend/drone/media
 backend/drone/static
 
-frontend/drone-app/node_modules
+drone-app/node_modules
+
+/frontend/
