@@ -163,8 +163,6 @@ const SignUp = () => {
             <br />
             <strong>
               <a
-                href="/termsandconditions"
-                target="_blank"
                 className={styles.pages}
               >
                 Term of Conditions
@@ -172,13 +170,13 @@ const SignUp = () => {
             </strong>
             ,{" "}
             <strong>
-              <a href="/privacypolicy" target="_blank" className={styles.pages}>
+              <a className={styles.pages}>
                 Privacy Policy
               </a>
             </strong>
             ,<br /> and{" "}
             <strong>
-              <a href="/returnpolicy" target="_blank" className={styles.pages}>
+              <a className={styles.pages}>
                 Return Policy
               </a>
             </strong>
