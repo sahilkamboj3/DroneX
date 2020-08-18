@@ -46,7 +46,9 @@
 <h3>Share the Product</h3>
 <p>On the home page, the user can input the email of a person who does not already have an account with DroneX. This will automatically send an email to the new potential user inviting them to DroneX and letting them who shared the product with them. Once he/she has done so, not only will the new friend get emailed a unique one-time discount worth 15% off, the user who shared the product will also be emailed a one-time discount code worth 15% off as a thank you.</p>
 <img src='drones_imgs_vids/sharing.gif' width='600'>
+<h5>Email to Current User</h5>
 <img src='drones_imgs_vids/discount.jpg' width='700'>
+<h5>Email to new Potential User</h5>
 <img src='drones_imgs_vids/sharing_new_user_email.jpg' width='700'>
 
 <h3>Purchase a Mavic Air 2</h3>
