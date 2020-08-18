@@ -15,8 +15,8 @@
 <h2>Features</h2>
 
 <h3>Creating/Logging to an Account</h3>
-<img src='drones_screenshots/login.jpg' width='300' style='display: blocked;' />
-<img src='drones_screenshots/sign_up.jpg' width='300' style='display: blocked;' />
+<img src='drones_screenshots/login.jpg' width='400' style='display: inline;' />
+<img src='drones_screenshots/sign_up.jpg' width='400' style='display: inline;' />
 <p>Simply input the appropriate information, whether you are logging in or signing up. The user can click on the eye below the inputs to toggle seeing the password or not.</p>
 
 <!-- video goes here -->
