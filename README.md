@@ -1,3 +1,3 @@
 # DroneX
 
-<img src='login.jpg' />
+<img src='drones_screenshots/login.jpg' />
