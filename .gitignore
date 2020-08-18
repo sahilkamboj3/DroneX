@@ -6,6 +6,4 @@ backend/drone/static
 
 drone-app/node_modules
 
-/drones_screenshots/
-
 /frontend/
