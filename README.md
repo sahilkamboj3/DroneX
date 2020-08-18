@@ -15,19 +15,19 @@
 <h2>Features</h2>
 
 <h3>Creating/Logging to an Account</h3>
-<div class='images' style='display: flex; flex-direction: row;'>
-    <img src='drones_screenshots/login.jpg' width='400' />
-    <img src='drones_screenshots/sign_up.jpg' width='400' />
-</div>
+<img src='drones_screenshots/login.jpg' width='500' />
+<img src='drones_screenshots/sign_up.jpg' width='500' />
+<video width='400' controls>
+    <source src='drones_screenshots/sign_in.mp4' type='video/mp4'>
+</video>
 <p>Simply input the appropriate information, whether you are logging in or signing up. The user can click on the eye below the inputs to toggle seeing the password or not.</p>
 
-<!-- video goes here -->
-
 <h3>Changing your Password</h3>
-<img src='drones_screenshots/fp1.jpg'>
-<img src='drones_screenshots/fp_doesnt_work.jpg'>
-<img src='drones_screenshots/fp_temp_code_email.jpg'>
-<img src='drones_screenshots/fp_temp_code.jpg'>
+<div class='fp-images' style='display: flex; flex-direction: row;'>
+<img src='drones_screenshots/fp1.jpg' width='400'>
+<img src='drones_screenshots/fp_temp_code_email.jpg' width='400'>
+<img src='drones_screenshots/fp_temp_code.jpg' width='400'>
+<img src='drones_screenshots/fp_doesnt_work.jpg' width='400'>
 <!-- video goes here -->
 <p>If the user clicks on "Forgot password?" on the sign in page, they will be lead to another page to fill out information for forgetting the password.</p>
 <ol>
@@ -39,8 +39,15 @@
 
 <h3>Home Page</h3>
 <!-- video goes here -->
+<video width='400' controls>
+    <source src='drones_screenshots/home_page.mp4' type='video/mp4'>
+</video>
 
 <h3>Leave a Review</h3>
+</div>
+<video width='400' controls>
+    <source src='drones_screenshots/review.mp4' type='video/mp4'>
+</video>
 <!-- video goes here -->
 
 <p>Click on "Leave a review" to go to the page with a form to fill out. Simply select the rating, leave a text, select an image or video, and even choose to post a review anonymously so no one can see your name.</p>
