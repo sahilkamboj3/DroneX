@@ -42,6 +42,7 @@
 <h3>Share the Product</h3>
 <img src='drones_imgs_vids/sharing.gif' width='600'>
 <img src='drones_imgs_vids/discount.jpg' width='600'>
+<img src='drones_imgs_vids/sharing_new_user_email.jpg' width='600'>
 
 <p>On the home page, the user can input the email of a person who does not already have an account with DroneX. This will automatically send an email to the new potential user inviting them to DroneX and letting them who shared the product with them. Once he/she has done so, not only will the new friend get emailed a unique one-time discount worth 15% off, the user who shared the product will also be emailed a one-time discount code worth 15% off as a thank you.</p>
 
@@ -50,6 +51,6 @@
 <!-- video goes here -->
 
 <h3>Purchase a Mavic Air 2</h3>
-<img src='drones_imgs_vids/ty_email2.jpg' width='600'>
 <img src='drones_imgs_vids/purchase.gif' width='600'>
+<img src='drones_imgs_vids/ty_email2.jpg' width='600'>
 <p>Upon the cart page, the user can input either the discount code already inputted for them or a unique discount they obtained through an email. This will reduce the total cost by how much ever percent the discount code reduces the price by. After that, simply fill in the address and payment information, which I have purposely made unfillable for safety purposes, and place your order!</p>
